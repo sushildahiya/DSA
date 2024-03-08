@@ -4,7 +4,7 @@ class Node:
     self.next = None
 
 
-### Time complexity of taking input is O(N)
+  ### Time complexity of taking input is O(N)
 def takeInputEfficent():
   inputArr = [int(ele) for ele in input().split(" ")]
   tail = None
@@ -29,20 +29,13 @@ def printLL(head):
   print("None")
 
 
-### Time complexity O(M)
-def print_ith_position(head, i):
-  count = 0
-  temp = head
-  while temp is not None:
-    if count == i:
-      return temp.data
-    count += 1
-    temp = temp.next
-  return
+### Print length of linked list recursively
+def linked_length(head):
+  if head.next is None:
+    return 1
+  return 1+ linked_length(head.next)
 
 
 head = takeInputEfficent()
-k = int(input())
-
 printLL(head)
-print(print_ith_position(head, k))
+print(linked_length(head))
