@@ -1,3 +1,5 @@
+### For a given Binary Tree of type integer and a number X, find whether a node exists in the tree with data X or not.
+
 class BinaryTree:
   def __init__(self, data):
     self.data = data
@@ -13,7 +15,6 @@ def inputBinaryTree():
   root.right = inputBinaryTree()
   return root
 
-
 def printBinaryTree(root):
   if root == None:
     return
@@ -26,11 +27,12 @@ def printBinaryTree(root):
   printBinaryTree(root.left)
   printBinaryTree(root.right)
 
-### Find the height of binary tree
-def find_height(root):
+def isNode(root,x):
   if root == None:
-    return 0
-  return 1 + max(find_height(root.right),find_height(root.left))
+    return False
+  if root.data==x:
+    return True
+  return isNode(root.left,x) or isNode(root.right,x)
 
-root = inputBinaryTree()
-print(find_height(root))            
+root= inputBinaryTree()
+print(isNode(root,3))

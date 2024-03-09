@@ -1,8 +1,11 @@
+### Print the node at depth of k from root node
 class BinaryTree:
+
   def __init__(self, data):
     self.data = data
     self.left = None
     self.right = None
+
 
 def inputBinaryTree():
   data = int(input())
@@ -26,11 +29,20 @@ def printBinaryTree(root):
   printBinaryTree(root.left)
   printBinaryTree(root.right)
 
-### Find the height of binary tree
-def find_height(root):
+
+def printKDepthNode(root, k):
+  printKDepthHelper(root, k, 0)
+
+
+def printKDepthHelper(root, k, count):
   if root == None:
-    return 0
-  return 1 + max(find_height(root.right),find_height(root.left))
+    return
+  if count == k:
+    print(root.data, end=" ")
+    return
+  printKDepthHelper(root.left, k, count + 1)
+  printKDepthHelper(root.right, k, count + 1)
+
 
 root = inputBinaryTree()
-print(find_height(root))            
+printKDepthNode(root, 2)

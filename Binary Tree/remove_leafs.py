@@ -1,3 +1,4 @@
+### Remove leaf nodes of a tree
 class BinaryTree:
   def __init__(self, data):
     self.data = data
@@ -16,7 +17,7 @@ def inputBinaryTree():
 
 def printBinaryTree(root):
   if root == None:
-    return
+    return 
   print(root.data, end=": ")
   if root.left != None:
     print('L ', root.left.data, end=" ")
@@ -26,11 +27,14 @@ def printBinaryTree(root):
   printBinaryTree(root.left)
   printBinaryTree(root.right)
 
-### Find the height of binary tree
-def find_height(root):
+def removeLeaf(root):
   if root == None:
-    return 0
-  return 1 + max(find_height(root.right),find_height(root.left))
+    return
+  if root.left == None and root.right ==None:
+    return None
+  root.left=removeLeaf(root.left)
+  root.right=removeLeaf(root.right)
+  return root
 
 root = inputBinaryTree()
-print(find_height(root))            
+printBinaryTree(root)

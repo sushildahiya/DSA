@@ -1,8 +1,13 @@
+### For a given binary tree of type integer,print all the nodes without any siblings.
+
+
 class BinaryTree:
+
   def __init__(self, data):
     self.data = data
     self.left = None
     self.right = None
+
 
 def inputBinaryTree():
   data = int(input())
@@ -26,11 +31,18 @@ def printBinaryTree(root):
   printBinaryTree(root.left)
   printBinaryTree(root.right)
 
-### Find the height of binary tree
-def find_height(root):
+
+def printNodesWithoutSibilings(root):
   if root == None:
-    return 0
-  return 1 + max(find_height(root.right),find_height(root.left))
+    return
+  printNodesWithoutSibilings(root.left)
+  printNodesWithoutSibilings(root.right)
+  if root.left != None and root.right == None:
+    print(root.left.data, end=" ")
+  elif root.left == None and root.right != None:
+    print(root.right.data, end=" ")
+
 
 root = inputBinaryTree()
-print(find_height(root))            
+
+printNodesWithoutSibilings(root)

@@ -1,8 +1,12 @@
+### For a given Binary Tree of integers, replace each of its data with the depth of the tree.
+### Root is depth 0 , hence the root is updated with 0. Replicate the same further going down the in the depth of the given tree.
 class BinaryTree:
+
   def __init__(self, data):
     self.data = data
     self.left = None
     self.right = None
+
 
 def inputBinaryTree():
   data = int(input())
@@ -26,11 +30,19 @@ def printBinaryTree(root):
   printBinaryTree(root.left)
   printBinaryTree(root.right)
 
-### Find the height of binary tree
-def find_height(root):
+
+def replaceKDepthNode(root):
+  replaceKDepthHelper(root, 0)
+
+
+def replaceKDepthHelper(root, count):
   if root == None:
-    return 0
-  return 1 + max(find_height(root.right),find_height(root.left))
+    return
+
+  replaceKDepthHelper(root.left, count + 1)
+  replaceKDepthHelper(root.right, count + 1)
+  root.data = count
+
 
 root = inputBinaryTree()
-print(find_height(root))            
+printBinaryTree(replaceKDepthNode(root))

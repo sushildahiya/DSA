@@ -26,11 +26,12 @@ def printBinaryTree(root):
   printBinaryTree(root.left)
   printBinaryTree(root.right)
 
-### Find the height of binary tree
-def find_height(root):
-  if root == None:
+def leafNodesCount(root):
+  if root==None:
     return 0
-  return 1 + max(find_height(root.right),find_height(root.left))
+  if root.left == None and root.right==None:
+    return 1
+  return leafNodesCount(root.left)+leafNodesCount(root.right)
 
-root = inputBinaryTree()
-print(find_height(root))            
+root= inputBinaryTree()
+print(leafNodesCount(root))
